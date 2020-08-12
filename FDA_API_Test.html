@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>API Testing</title>
+</head>
+
+<body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // This is our API key. Add your own API key between the ""
+    var APIKey = "9T91KX0fND6FQdNSBejeTZYWGSOMmilhOIt9NBfz";
+
+    var drug = "zyrtec";
+
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.fda.gov/drug/label.json?api_key=" + APIKey + "&search=" + drug;
+
+    // We then created an AJAX call
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+
+      console.log(response.results[0].warnings[0]);
+      console.log(response.results[0].indications_and_usage[0]);
+      console.log(response.results[0]);
+
+      //maybe i can correlate the label to the adverse events api
+      //by using the ndc number
+      // Create CODE HERE to Log the queryURL
+      // Create CODE HERE to log the resulting object
+      // Create CODE HERE to calculate the temperature (converted from Kelvin)
+      // Create CODE HERE to transfer content to HTML
+      // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+      // Create CODE HERE to dump the temperature content into HTML
+
+    });
+  </script>
+</body>
+
+</html>
