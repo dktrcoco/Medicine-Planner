@@ -1,5 +1,4 @@
-var day = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
-$(".lead").html(day);
+$("#currentDay").text(moment().format("dddd MMMM Do"));
 
 var meds = JSON.parse(localStorage.getItem("meds")) || [];
 var medInput = $("#medInput").val(); //defines the input text as medInput value
@@ -14,12 +13,22 @@ function saveMeds() {
   // renderButtons(meds);
 }
 
+//month count down
+var a = moment().endOf("month");
+var b = moment();
+console.log(a.diff(b, "days"));
+
+//medication button
 function renderData() {
+  var drug = $("#medInput").val();
+  if (!drug) {
+    return;
+  }
   // This is our API key
   var APIKey = "9T91KX0fND6FQdNSBejeTZYWGSOMmilhOIt9NBfz";
 
   //hard code a drug for proof of concept
-  var drug = "Nicotine"; //Vicodin, Nicotine, Viagra, Xanax,
+  //var drug = "Nicotine"; //Vicodin, Nicotine, Viagra, Xanax,
 
   //NOTE: This API is from the US FDA. This is from the same source as the second API used below.
   //This API contains distinctly different and unique data than the below API.
