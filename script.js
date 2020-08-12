@@ -19,7 +19,7 @@ function renderData() {
   var APIKey = "9T91KX0fND6FQdNSBejeTZYWGSOMmilhOIt9NBfz";
 
   //hard code a drug for proof of concept
-  var drug = "Nicotine"; //Vicodin, Nicotine, Viagra, Xanax,
+  var drug = $(".medinput").val(); //Vicodin, Nicotine, Viagra, Xanax,
 
   //NOTE: This API is from the US FDA. This is from the same source as the second API used below.
   //This API contains distinctly different and unique data than the below API.
