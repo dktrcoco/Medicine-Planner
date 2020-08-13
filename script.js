@@ -78,12 +78,17 @@ function renderData() {
       i < secondResponse.results[0].patient.reaction.length;
       i++
     ) {
-      $(".reactions").text(
-        "When using this medication, some patients have experienced the following side effects: " +
+      $(reactionsList).append(
+        // "When using this medication, some patients have experienced the following side effects: " +
+        $("<li>").text(
           secondResponse.results[0].patient.reaction[i].reactionmeddrapt
+        )
       );
     }
+
     console.log(secondResponse.results[0].patient.reaction[0].reactionmeddrapt);
+
+    $(".reactions").append(reactionsList);
     //maybe i can correlate the label to the adverse events api
     //by using the ndc number
   });
