@@ -1,5 +1,4 @@
-var day = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
-$(".lead").html(day);
+$("#currentDay").text(moment().format("dddd MMMM Do"));
 
 var meds = JSON.parse(localStorage.getItem("meds")) || [];
 var medInput = $("#medInput").val(); //defines the input text as medInput value
@@ -14,14 +13,29 @@ function saveMeds() {
   // renderButtons(meds);
 }
 
+//month count down
+var a = moment().endOf("month");
+var b = moment();
+console.log(a.diff(b, "days"));
+
+//medication button
 function renderData() {
+  var drug = $("#medInput").val();
+  if (!drug) {
+    return;
+  }
   // This is our API key
   var APIKey = "9T91KX0fND6FQdNSBejeTZYWGSOMmilhOIt9NBfz";
+
+
+  //hard code a drug for proof of concept
+  //var drug = "Nicotine"; //Vicodin, Nicotine, Viagra, Xanax,
 
   //hard code a drug for proof of concept<<<<<<< mdudzik92
   var drug = $(".medinput").val(); //Vicodin, Nicotine, Viagra, Xanax,
 
   //var drug = "Nicotine"; //Vicodin, Nicotine, Viagra, Xanax,
+
 
 
   //NOTE: This API is from the US FDA. This is from the same source as the second API used below.
@@ -81,6 +95,11 @@ function renderData() {
 
       $(reactionsList).append(
         // "When using this medication, some patients have experienced the following side effects: " +
+        $("<li>").text(
+
+
+      $(reactionsList).append(
+        // "When using this medication, some patients have experienced the following side effects: " +
           $("<li>").text(secondResponse.results[0].patient.reaction[i].reactionmeddrapt)
 
       );
@@ -91,10 +110,15 @@ function renderData() {
 
       $(".reactions").text(
         "When using this medication, some patients have experienced the following side effects: " +
+
           secondResponse.results[0].patient.reaction[i].reactionmeddrapt
+        )
       );
     }
+
     console.log(secondResponse.results[0].patient.reaction[0].reactionmeddrapt);
+
+    $(".reactions").append(reactionsList);
     //maybe i can correlate the label to the adverse events api
     //by using the ndc number
   });
