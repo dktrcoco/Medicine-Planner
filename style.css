@@ -7,12 +7,20 @@ h1{
     text-align: center;
  }
   
+<<<<<<< HEAD
  .today {
+=======
+ /* .today {
+>>>>>>> e583121a2fab0841fab4db3eefafc038ff1d07db
     text-align: center;
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
+<<<<<<< HEAD
     background-color: lightgray;
+=======
+    background-color: lightgray; */
+>>>>>>> e583121a2fab0841fab4db3eefafc038ff1d07db
  }
   
  .medinput {
