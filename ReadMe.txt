@@ -1,4 +1,8 @@
-User Story: As a consumer of medication(s) (prescription or vitamin/supplementals), I want a mobile UI-compatible website that is capable of tracking the various medications I take, provides reminders (daily & weekly) when to take the medications so I can adhere to a schedule, alerts me if there are any adverse combinations of the prescriptions, and even keeps track of when I’m due for a refill of a particular medication.
+User Story: As a consumer of medication(s) (prescription or vitamin/supplementals), 
+I want a mobile UI-compatible website that is capable of tracking the various medications I take, 
+provides reminders (daily & weekly) when to take the medications so I can adhere to a schedule, 
+alerts me if there are any adverse combinations of the prescriptions, 
+and even keeps track of when I’m due for a refill of a particular medication.
 
 GIVEN an app that tracks medication use
 WHEN I add a medication
