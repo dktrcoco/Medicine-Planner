@@ -18,8 +18,11 @@ function renderData() {
   // This is our API key
   var APIKey = "9T91KX0fND6FQdNSBejeTZYWGSOMmilhOIt9NBfz";
 
-  //hard code a drug for proof of concept
+  //hard code a drug for proof of concept<<<<<<< mdudzik92
   var drug = $(".medinput").val(); //Vicodin, Nicotine, Viagra, Xanax,
+
+  //var drug = "Nicotine"; //Vicodin, Nicotine, Viagra, Xanax,
+
 
   //NOTE: This API is from the US FDA. This is from the same source as the second API used below.
   //This API contains distinctly different and unique data than the below API.
@@ -64,12 +67,18 @@ function renderData() {
     );
     var reactionsList = $("<ul>")
 
+      "When using this medication, some patients have experienced the following side effects: " +
+        secondResponse.results[0].patient.reaction[0].reactionmeddrapt
+    );
+
+
     //attempt at loop to pull and display more than one side effect of the drug in question
     for (
       var i = 0;
       i < secondResponse.results[0].patient.reaction.length;
       i++
     ) {
+
       $(reactionsList).append(
         // "When using this medication, some patients have experienced the following side effects: " +
           $("<li>").text(secondResponse.results[0].patient.reaction[i].reactionmeddrapt)
@@ -79,6 +88,13 @@ function renderData() {
     console.log(secondResponse.results[0].patient.reaction[0].reactionmeddrapt);
 
     $(".reactions").append(reactionsList)
+
+      $(".reactions").text(
+        "When using this medication, some patients have experienced the following side effects: " +
+          secondResponse.results[0].patient.reaction[i].reactionmeddrapt
+      );
+    }
+    console.log(secondResponse.results[0].patient.reaction[0].reactionmeddrapt);
     //maybe i can correlate the label to the adverse events api
     //by using the ndc number
   });
