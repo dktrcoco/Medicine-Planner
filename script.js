@@ -1,4 +1,5 @@
-$("#currentDay").text(moment().format("dddd MMMM Do"));
+var day = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
+$(".lead").html(day);
 
 var meds = JSON.parse(localStorage.getItem("meds")) || [];
 var medInput = $("#medInput").val(); //defines the input text as medInput value
@@ -13,35 +14,26 @@ function saveMeds() {
   // renderButtons(meds);
 }
 
-//month count down
-var a = moment().endOf("month");
-var b = moment();
-console.log(a.diff(b, "days"));
-
-//medication button
 function renderData() {
-  var drug = $("#medInput").val();
-  if (!drug) {
-    return;
-  }
   // This is our API key
   var APIKey = "9T91KX0fND6FQdNSBejeTZYWGSOMmilhOIt9NBfz";
 
   //hard code a drug for proof of concept
+
   //var drug = "Nicotine"; //Vicodin, Nicotine, Viagra, Xanax,
 
   //NOTE: This API is from the US FDA. This is from the same source as the second API used below.
   //This API contains distinctly different and unique data than the below API.
   //This API houses the use directions and warnings of the drug in question.
   //in 2018 the FDA cataloged over 1.8 million research studies to accumulate this data.
-  var labelQueryURL =
-    "https://api.fda.gov/drug/label.json?api_key=" + APIKey + "&search=" + drug;
+  var labelQueryURL = "https://api.fda.gov/drug/label.json?api_key=" + APIKey + "&search=" + drug;
 
   // We then created an AJAX call
   $.ajax({
     url: labelQueryURL,
-    method: "GET",
+    method: "GET"
   }).then(function (response) {
+
     //pulls the warning of the drug in question and populates the html
     $(".warning").text("Warning: " + response.results[0].warnings[0]);
 
@@ -59,13 +51,13 @@ function renderData() {
   //This API contains distinctly different and unique data than the above API.
   //This API houses the side effects reported on the use of the drug in question.
   //In 2018 the FDA cataloged over 1.8 million research studies to accumulate this data.
-  var eventQueryURL =
-    "https://api.fda.gov/drug/event.json?api_key=" + APIKey + "&search=" + drug;
+  var eventQueryURL = "https://api.fda.gov/drug/event.json?api_key=" + APIKey + "&search=" + drug;
 
   $.ajax({
     url: eventQueryURL,
-    method: "GET",
+    method: "GET"
   }).then(function (secondResponse) {
+
     //pulls the side effects reported on use of the drug in question
     $(".reactions").text(
       "When using this medication, some patients have experienced the following side effects: " +
@@ -89,6 +81,7 @@ function renderData() {
     console.log(secondResponse.results[0].patient.reaction[0].reactionmeddrapt);
 
     $(".reactions").append(reactionsList);
+
     //maybe i can correlate the label to the adverse events api
     //by using the ndc number
   });
@@ -104,7 +97,7 @@ var sideEffects = [];
 //   var effects = sideEffects[i];
 
 //   var li = document.createElement("li");
-//   li.textContent =
+//   li.textContent = 
 
 // }
 $("#submitMeds").on("click", renderData);
