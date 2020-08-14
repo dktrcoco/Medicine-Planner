@@ -19,7 +19,9 @@ function renderData() {
   var APIKey = "9T91KX0fND6FQdNSBejeTZYWGSOMmilhOIt9NBfz";
 
   //hard code a drug for proof of concept
+
   var drug = "Nicotine"; //Vicodin, Nicotine, Viagra, Xanax, 
+
 
   //NOTE: This API is from the US FDA. This is from the same source as the second API used below.
   //This API contains distinctly different and unique data than the below API.
@@ -57,6 +59,7 @@ function renderData() {
     method: "GET"
   }).then(function (secondResponse) {
 
+
     //pulls the side effects reported on use of the drug in question
     $(".reactions").text("When using this medication, some patients have experienced the following side effects: "
       + secondResponse.results[0].patient.reaction[0].reactionmeddrapt);
@@ -67,6 +70,7 @@ function renderData() {
         + secondResponse.results[0].patient.reaction[i].reactionmeddrapt);
     }
     console.log(secondResponse.results[0].patient.reaction[0].reactionmeddrapt);
+
     //maybe i can correlate the label to the adverse events api
     //by using the ndc number
   });
